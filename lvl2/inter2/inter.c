@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgendry <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 11:24:13 by sgendry           #+#    #+#             */
-/*   Updated: 2018/09/13 11:21:16 by sgendry          ###   ########.fr       */
+/*   Created: 2018/09/13 11:22:11 by sgendry           #+#    #+#             */
+/*   Updated: 2018/09/13 12:04:57 by sgendry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,43 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int		iter(char *str, char c, int len)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && (i < len || len == -1))
-		if (str[i++] == c)
-			return (1);
-	return (0);
-}
-
-int		main(int argc, char** argv)
+int		inter(char *str, char c, int j)
 {
 	int i;
+
+	i = 0;
+	while (i < j)
+	{
+		if (str[i] == c)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int		main(int argc, char **argv)
+{
+	int i;
+	int k;
 
 	i = 0;
 	if (argc == 3)
 	{
 		while (argv[1][i])
 		{
-			if (!iter(argv[1], argv[1][i], i) && iter(argv[2], argv[1][i], -1))
+			k = 0;
+			while (argv[2][k])
 			{
-				ft_putchar(argv[1][i]);
+				if (argv[1][i] == argv[2][k] && inter(argv[1], argv[1][i], i))
+				{
+					ft_putchar(argv[1][i]);
+					break ;
+				}
+				k++;
 			}
 			i++;
 		}
 	}
-		ft_putchar('\n');
-		return (0);
+	ft_putchar('\n');
+	return (0);
 }
